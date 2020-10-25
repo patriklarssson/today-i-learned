@@ -1,0 +1,34 @@
+ <div class="postContainer" *ngFor="let post of postsList">
+    <div class="topRow">
+        <div class="titleContainer">
+            <a [attr.href]="'/post?postid=' + post.key">
+                <h3 class="title">{{post.title}}</h3>
+            </a>
+        </div>
+        <div class="optionsContainer">
+            <p class="options">•••</p>
+        </div>
+    </div>
+
+    <div class="middleRow">
+        <p class="body">{{post.body}}</p>
+    </div>
+
+    <div class="bottomRow">
+        <div class="tagsContainer">
+            <div class="tags" *ngFor="let tag of post.tags">{{tag}}</div>
+        </div>
+        <div class="languageContainer">
+            <p *ngFor="let lang of post.language" class="language">{{lang}}</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

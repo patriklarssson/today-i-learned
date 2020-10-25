@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    height: 65px;
+    padding: 0 5%;
+    background-color: #2DB84B;
+    align-items: center;
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.links {
+    flex: 2;
+    a {
+        padding: 0 25px;
+    }
+}
+
+.profile {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    a {
+        padding: 0 25px;
+    }
+}
+
+.pageTitle {
+    flex: 2;
+    a {
+        font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #ffff;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+}

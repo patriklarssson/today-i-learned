@@ -1,0 +1,122 @@
+.postContainer {
+    background-color: #ffffff;
+    flex: 1;
+    height: 140px;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1127px;
+    border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+
+    &:hover {
+        background-color: #F7F7F7;
+    }
+}
+
+.tags, .options, .title, .language {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.topRow  {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+
+}
+.titleContainer {
+    flex: 5;
+}
+.optionsContainer {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.options {
+    margin: 0;
+            width: 30px;    
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    &:hover {
+        background-color:  #e8e8e8;
+        border-radius: 30px;
+        padding: 0px;        
+    }
+}
+.middleRow  {
+    
+    flex: 5;
+}
+.bottomRow  {    
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.tagsContainer {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+}
+.languageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.language {
+    margin: 0;
+
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    font-size: 0.78571429rem;
+}
+.tags {
+    margin: 0;
+    display: inline-block;
+    line-height: 1;
+    margin: 0em 0.14285714em;
+    background-color: #e8e8e8;
+    padding: 0.5833em 0.833em;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    border-radius: 0.28571429rem;  
+    font-size: 0.78571429rem;
+}
+
+.body {
+    font-size: 1.05rem;
+    min-height: 45px;
+    font-family: "Lato", "Helvetica Neue", "Arial", "Helvetica", "sans-serif";
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: -5px;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 7%;
+}
+.title {
+    margin: 0em;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 1.28rem;
+    margin: 0; 
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1000px) {
+    .body {
+        -webkit-line-clamp: 3;
+    }
+}

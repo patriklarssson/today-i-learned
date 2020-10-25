@@ -1,0 +1,15 @@
+.filters {    
+    flex: 1;       
+}
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px 0 10px;    
+
+    select {
+        width: 220px;
+        height: 38px;
+    }
+}
+
