@@ -22,13 +22,14 @@
             <app-post-filter></app-post-filter>
             <app-post-filter></app-post-filter>
             <app-post-filter></app-post-filter>
-            <app-post-calendar></app-post-calendar>
+            <app-post-calendar [postsList]="postsList" ></app-post-calendar>
         </div>
         
         <!-- <app-post-calendar></app-post-calendar> -->
     </div>
 
     <div class="right">        
-            <app-post-preview [postsList]="postsList" ></app-post-preview>        
+            <app-post-preview [postsList]="postsList" ></app-post-preview>       
+            
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
     <div class="innerContainer">
-        <div class="postContainer">
+        <div *ngIf="post" class="postContainer">
             <div>
                 <label>Title</label>
                 <input class="title" [(ngModel)]="post.title" type="text">
@@ -36,7 +36,7 @@
             </div>
 
             <div>
-                <button (click)="postPost()">Post</button>
+                <button (click)="savePost()">Update</button>
             </div>
 
         </div>

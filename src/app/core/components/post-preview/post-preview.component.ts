@@ -15,4 +15,8 @@ export class PostPreviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  cleanBody(body) {
+    return body.replace(/<[^>]*>/g, '')
+  }
+
 }

@@ -16,6 +16,13 @@ import { PostCalendarComponent } from './components/post-calendar/post-calendar.
 import { PostComponent } from './views/post/post.component';
 import { NewPostComponent } from './views/new-post/new-post.component';
 
+import { QuillModule } from 'ngx-quill'
+
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToolTipComponent } from './components/tool-tip/tool-tip.component';
+import { EditPostComponent } from './views/edit-post/edit-post.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -25,6 +32,8 @@ import { NewPostComponent } from './views/new-post/new-post.component';
     PostCalendarComponent,
     PostComponent,
     NewPostComponent,
+    ToolTipComponent,
+    EditPostComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +43,9 @@ import { NewPostComponent } from './views/new-post/new-post.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ReactiveFormsModule,
-
+    QuillModule.forRoot(),
+    TagInputModule,
+    BrowserAnimationsModule
   ]
 })
 export class CoreModule { }

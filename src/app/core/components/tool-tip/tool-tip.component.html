@@ -1,0 +1,11 @@
+<p (click)="toggle()" class="options">•••</p>
+<div *ngIf="displayTooltip && key" class="tooltip">
+    <div class="tooltiptext">
+        <a [attr.href]="'/editpost?postid=' + key">
+            <p class="action">Edit</p>
+        </a>        
+
+        <p class="action">Add to favourites</p>
+        <p class="action" (click)="deletePost()">Delete</p>
+    </div>
+</div>

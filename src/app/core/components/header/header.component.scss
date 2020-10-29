@@ -49,3 +49,9 @@
         text-decoration: none;
     }
 }
+
+@media screen and (max-width: 715px) {
+    .right, .links {
+        display: none;
+    }   
+  }

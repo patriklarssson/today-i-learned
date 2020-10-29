@@ -6,12 +6,13 @@
             </a>
         </div>
         <div class="optionsContainer">
-            <p class="options">•••</p>
+            <!-- <p class="options">•••</p> -->
+            <app-tool-tip [key]="post.key" ></app-tool-tip>
         </div>
     </div>
 
     <div class="middleRow">
-        <p class="body">{{post.body}}</p>
+        <p class="body" [innerHTML]="cleanBody(post.body)"></p>
     </div>
 
     <div class="bottomRow">
@@ -19,7 +20,7 @@
             <div class="tags" *ngFor="let tag of post.tags">{{tag}}</div>
         </div>
         <div class="languageContainer">
-            <p *ngFor="let lang of post.language" class="language">{{lang}}</p>
+            <p class="language">{{post.language}}</p>
         </div>
     </div>
 </div>

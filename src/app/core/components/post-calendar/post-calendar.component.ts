@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from '../../interfaces/post';
 
 @Component({
   selector: 'app-post-calendar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-calendar.component.scss']
 })
 export class PostCalendarComponent implements OnInit {
+
+  @Input() postsList: Post[]
 
   constructor() { }
 
@@ -33,24 +36,16 @@ export class PostCalendarComponent implements OnInit {
     this.currentMonth = (this.currentMonth === 0) ? 11 : this.currentMonth - 1;
     this.currentDaysInMonth = this.daysInMonth()
     console.log("Year: " + this.currentYear + " Month: " + this.months[this.currentMonth]);
-    console.log(this.currentDaysInMonth);
-    
+    console.log(this.currentDaysInMonth);    
+  }
+
+  isHighlighted(day): boolean {
+    let date = new Date(this.months[this.currentMonth] + " " + day + " " + this.currentYear).toDateString()      
+    return (this.postsList.some(x => x.date == date))
   }
 
   daysInMonth(): number {
     return 32 - new Date(this.currentYear, this.currentMonth, 32).getDate();
-  }
-
-  updateCalendar(month: number, year: number): void {
-    let firstDay = (new Date(year, month)).getDay()
-
-    this.selectYear = year
-    this.selectMonth = month
-
-
-
-
-    
   }
 
 

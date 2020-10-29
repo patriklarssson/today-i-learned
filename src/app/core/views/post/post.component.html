@@ -1,1 +1,25 @@
-<p>post works!</p>
+<div class="container">
+    <div class="innerContainer">
+        <div *ngIf="post" class="postContainer">
+
+            <div class="headerContainer">
+                <div class="topRow">
+                    <div class="titleContainer">
+                        <h1 class="title">{{post.title}}</h1>
+                    </div>
+                    <div class="optionsContainer">
+                        <app-tool-tip [key]="postId"></app-tool-tip>
+                    </div>
+                </div>
+                
+                <div class="tagsContainer">
+                    <div class="tags" *ngFor="let tag of post.tags">{{tag}}</div>
+                </div>
+            </div>
+
+            <h1>{{post.date}}</h1>
+            <h1>{{post.language}}</h1>
+            <div [innerHTML]="getHtml()"></div>
+        </div>
+    </div>
+</div>

@@ -30,6 +30,16 @@
     font-size: 0.88rem;
 }
 
+.highlightDay {
+  background-color: #59bb6e;
+  &:hover {
+    background-color: #2DB84B !important;
+  }
+  span {
+    color: white;
+  }
+}
+
 * {box-sizing: border-box;}
 ul {list-style-type: none;}
 body {font-family: Verdana, sans-serif;}

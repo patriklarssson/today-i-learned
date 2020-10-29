@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Post } from '../../interfaces/post';
 import { Tag } from '../../interfaces/tag';
@@ -6,27 +7,28 @@ import { PostsService } from '../../services/posts/posts.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-new-post',
-  templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.scss']
+  selector: 'app-edit-post',
+  templateUrl: './edit-post.component.html',
+  styleUrls: ['./edit-post.component.scss']
 })
-export class NewPostComponent implements OnInit {
+export class EditPostComponent implements OnInit {
 
   constructor(
-    public postsService: PostsService,
-    private route: Router
+    private route: ActivatedRoute,
+    private postsService: PostsService,
+    private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.getTags()
-  }
-
+  postId: string
+  post: Post
   tagBadges: Tag[]
 
   newTag: Tag = { tag: "" }
 
-  post: Post = { body: "", date: "", language: "", tags: [], title: "" }
-
+  ngOnInit(): void {
+    this.postId = this.route.snapshot.queryParamMap.get('postid')
+    this.getPost()
+  }
 
   tagsInputAdd(badge): void {
     this.post.tags.push(badge.value)
@@ -56,11 +58,19 @@ export class NewPostComponent implements OnInit {
     })
   }
 
-  postPost(): void {
-    this.post.date = new Date().toDateString()
-    this.postsService.createPost(this.post).then(x => {
-      this.route.navigate(['/post'], { queryParams: { postid: x } });
-    })
+  getPost(): void {
+    this.postsService.getPostById(this.postId).snapshotChanges().pipe(
+      map(res => res)).subscribe(item => {
+        this.post = item.payload.val() as Post
+      })
   }
-  
+
+  savePost(): void {
+    this.postsService.updatePost(this.postId, this.post).then(x => {
+      this.router.navigate(['/post'], { queryParams: { postid: this.postId } })
+    })
+    
+
+  }
+
 }
