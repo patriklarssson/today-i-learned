@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Filters } from '../../interfaces/filters';
 import { Post } from '../../interfaces/post';
 import { Tag } from '../../interfaces/tag';
 
@@ -14,18 +14,26 @@ import { Tag } from '../../interfaces/tag';
 export class PostsService {
 
   private dbPathPost = 'post'
-  private dbPathTag = 'tag'
-  items: Observable<any[]>;
   constructor(
-    private db: AngularFireDatabase,
     private afs: AngularFirestore
   ) {
   }
 
   getPostList(): AngularFirestoreCollection<Post> {
-    return this.afs.collection(this.dbPathPost, ref => 
-    ref.orderBy("date", "desc")
-    .limit(10)
+    return this.afs.collection(this.dbPathPost, ref =>
+      ref.orderBy("date", "desc")
+        .limit(10)
+    )
+  }
+
+  getFilteredPosts(filter: Filters): AngularFirestoreCollection<Post> {
+    return this.afs.collection(this.dbPathPost, ref => {
+      let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+      if (filter.tag) { query = query.where("tags", "array-contains", filter.tag) }
+      if (filter.type) { query = query.where("language", "==", filter.type) }
+      if (filter.orderCategory) { query = query.orderBy(filter.orderCategory.toLowerCase(), filter.orderBy) }
+      return query
+    }
     )
   }
 
@@ -35,7 +43,6 @@ export class PostsService {
 
   createPost(item: Post): Promise<string> {
     var idRef = this.afs.createId()
-
     return this.afs.collection(this.dbPathPost).doc(idRef).set(item)
       .then(x => {
         return idRef
@@ -50,30 +57,8 @@ export class PostsService {
     this.afs.collection(this.dbPathPost).doc(id).delete()
   }
 
-  // deleteAllPosts(): Promise<void> {
-  //   return this.postRef.remove()
-  // }
-
-
-
-  // createTag(item: Tag): void {
-  //   this.tagRef.push(item)
-  // }
-
-  // updateTag(key: string, value: any): Promise<void> {
-  //   return this.tagRef.update(key, value)
-  // }
-
-  // deleteTag(key: string): Promise<void> {
-  //   return this.tagRef.remove(key)
-  // }
-
-  // getTagList(): AngularFireList<Tag> {
-  //   return this.tagRef
-  // }
-
-  // deleteAllTags(): Promise<void> {
-  //   return this.tagRef.remove()
-  // }
+  incrementView(id: string) {
+    this.afs.collection(this.dbPathPost).doc(id).update({'views': firebase.firestore.FieldValue.increment(1)})
+  }
 
 }

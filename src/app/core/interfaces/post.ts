@@ -4,5 +4,6 @@ export interface Post {
     tags: string[]
     language: string
     date: any
+    views: number
     id?: string
 }

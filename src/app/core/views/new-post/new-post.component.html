@@ -14,7 +14,7 @@
 
             <div>
                 <label>Tags</label>
-                <tag-input [ngModel]="post.tags" [onlyFromAutocomplete]="true" (onAdd)="tagsInputAdd($event)"
+                <tag-input [ngModel]="post.tags" [onlyFromAutocomplete]="true" (input)="searchTags($event.target.value)" (onAdd)="tagsInputAdd($event)"
                     (onRemove)="tagsInputRemove($event)">
                     <tag-input-dropdown [autocompleteItems]="inputTagList()">
                         <ng-template let-item="item" let-index="index">

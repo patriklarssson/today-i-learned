@@ -1,8 +1,37 @@
-<div class="filterContainer">
-    <select name="cars" id="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-    </select>
+<div>
+    <div class="filterContainer">
+        <select (change)="setType($event.target.value)">
+            <option value="">Type of post</option>
+            <option value="Guide">Guide</option>
+            <option value="Setup">Setup</option>
+            <option value="Boiler">Boiler</option>
+            <option value="Hack">Hack</option>
+        </select>
+    </div>
+    
+    <div class="filterContainer">
+        <select (change)="setTag($event.target.value)">
+            <option value="">Tag</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Angular">Angular</option>
+            <option value="Math">Math</option>
+        </select>
+    </div>
+    
+    <div class="filterContainer">
+        <select (change)="setOrderCategory($event.target.value)">
+            <option value="">Order by</option>
+            <option value="Date">Date</option>
+            <option value="Views">Most viewed</option>
+            <option value="Fav">Favourites</option>
+        </select>    
+    </div>
+    
+    <div class="filterContainer">
+        <select (change)="setOrderBy($event.target.value)">
+            <option value="desc">Descending</option>
+            <option value="asc">Ascending</option>
+        </select>    
+    </div>
 </div>

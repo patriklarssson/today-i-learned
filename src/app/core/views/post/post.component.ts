@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
     private route: ActivatedRoute,
     private postsService: PostsService,
     private sanitizer: DomSanitizer,
-    private dateTimeHelper: DateTimeHelperService
+    private dateTimeHelper: DateTimeHelperService,
   ) { }
 
   postId: string
@@ -29,6 +29,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.postId = this.route.snapshot.queryParamMap.get('postid')
     this.getPost()
+    this.incrementView()
   }
 
   getHtml() {
@@ -39,15 +40,18 @@ export class PostComponent implements OnInit {
     return this.dateTimeHelper.toYYYYMMDD(date.toDate())
   }
 
-  getPost(): void {
+  getPost() {
     this.postsService.getPostById(this.postId).snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })))
     ).subscribe(x => {
-      this.post = { ...x[0] }
-    }
-    )
+      this.post = { ...x[0] }     
+    })
+  }
+
+  incrementView() {
+    this.postsService.incrementView(this.postId)
   }
 }
 

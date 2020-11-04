@@ -19,6 +19,7 @@
 
             <h1 *ngIf="post.date">{{getDate(post.date)}}</h1>
             <h1>{{post.language}}</h1>
+            <h1>Views: {{post.views}}</h1>
             <div [innerHTML]="getHtml()"></div>
         </div>
     </div>
