@@ -3,6 +3,6 @@ export interface Post {
     body: string
     tags: string[]
     language: string
-    date: string
-    key?: string
+    date: any
+    id?: string
 }

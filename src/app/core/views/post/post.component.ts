@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Post } from '../../interfaces/post';
 import { PostsService } from '../../services/posts/posts.service';
-import { DomSanitizer} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser'
+import { DateTimeHelperService } from '../../helpers/date-time-helper.service';
 
 @Component({
   selector: 'app-post',
@@ -18,14 +19,15 @@ export class PostComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private dateTimeHelper: DateTimeHelperService
   ) { }
 
-    postId: string
-    post: Post
+  postId: string
+  post: Post
 
   ngOnInit(): void {
-    this.postId = this.route.snapshot.queryParamMap.get('postid')    
+    this.postId = this.route.snapshot.queryParamMap.get('postid')
     this.getPost()
   }
 
@@ -33,11 +35,19 @@ export class PostComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(this.post.body)
   }
 
+  getDate(date) {
+    return this.dateTimeHelper.toYYYYMMDD(date.toDate())
+  }
+
   getPost(): void {
     this.postsService.getPostById(this.postId).snapshotChanges().pipe(
-      map(res => res)).subscribe(item => {
-      this.post = item.payload.val() as Post
-    })     
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })))
+    ).subscribe(x => {
+      this.post = { ...x[0] }
+    }
+    )
   }
 }
 

@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <h1>{{post.date}}</h1>
+            <h1 *ngIf="post.date">{{getDate(post.date)}}</h1>
             <h1>{{post.language}}</h1>
             <div [innerHTML]="getHtml()"></div>
         </div>

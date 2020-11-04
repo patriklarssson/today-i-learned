@@ -41,7 +41,7 @@ import { EditPostComponent } from './views/edit-post/edit-post.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule, // for firestore
     ReactiveFormsModule,
     QuillModule.forRoot(),
     TagInputModule,

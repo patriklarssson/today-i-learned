@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../interfaces/post';
 import { PostsService } from '../../services/posts/posts.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -24,12 +24,23 @@ export class HomeComponent implements OnInit {
     this.postsService.getPostList().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })))
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })))
     ).subscribe(x => {
-      this.postsList = x.reverse()
+      this.postsList = x
     }
     )
   }
+
+  // get(): void {
+  //   this.postsService.getPostList().snapshotChanges().pipe(
+  //     map(changes =>
+  //       changes.map(c =>
+  //         ({ key: c.payload.doc.id, ...c.payload.doc.data() })))
+  //   ).subscribe(x => {
+  //     this.postsList = x.reverse()
+  //   }
+  //   )
+  // }
 
 
 }

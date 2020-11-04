@@ -22,7 +22,7 @@ import { HeaderComponent } from './core/components/header/header.component';
     HttpClientModule,
     CoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule, // for firestore
     FormsModule,
     // QuillModule.forRoot()
   ],

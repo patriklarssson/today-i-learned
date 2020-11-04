@@ -1,13 +1,13 @@
  <div class="postContainer" *ngFor="let post of postsList">
     <div class="topRow">
         <div class="titleContainer">
-            <a [attr.href]="'/post?postid=' + post.key">
+            <a [attr.href]="'/post?postid=' + post.id">
                 <h3 class="title">{{post.title}}</h3>
             </a>
         </div>
         <div class="optionsContainer">
             <!-- <p class="options">•••</p> -->
-            <app-tool-tip [key]="post.key" ></app-tool-tip>
+            <app-tool-tip [key]="post.id" ></app-tool-tip>
         </div>
     </div>
 

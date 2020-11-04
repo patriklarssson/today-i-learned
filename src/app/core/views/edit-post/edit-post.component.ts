@@ -5,6 +5,9 @@ import { Post } from '../../interfaces/post';
 import { Tag } from '../../interfaces/tag';
 import { PostsService } from '../../services/posts/posts.service';
 import { Router } from '@angular/router';
+import { DateTimeHelperService } from '../../helpers/date-time-helper.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-edit-post',
@@ -16,7 +19,8 @@ export class EditPostComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private router: Router
+    private router: Router,
+    private dateTimeHelper: DateTimeHelperService
   ) { }
 
   postId: string
@@ -43,34 +47,37 @@ export class EditPostComponent implements OnInit {
   }
 
   addTag(): void {
-    this.postsService.createTag(this.newTag)
+    // this.postsService.createTag(this.newTag)
   }
 
   getTags(): void {
-    console.log("enter");
+    // console.log("enter");
 
-    this.postsService.getTagList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })))
-    ).subscribe(x => {
-      this.tagBadges = x
-    })
+    // this.postsService.getTagList().snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c =>
+    //       ({ key: c.payload.key, ...c.payload.val() })))
+    // ).subscribe(x => {
+    //   this.tagBadges = x
+    // })
   }
 
   getPost(): void {
     this.postsService.getPostById(this.postId).snapshotChanges().pipe(
-      map(res => res)).subscribe(item => {
-        this.post = item.payload.val() as Post
-      })
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })))
+    ).subscribe(x => {
+      this.post = {...x[0]}
+    }
+    )
   }
 
   savePost(): void {
+    this.post.date = firebase.firestore.FieldValue.serverTimestamp()
     this.postsService.updatePost(this.postId, this.post).then(x => {
       this.router.navigate(['/post'], { queryParams: { postid: this.postId } })
     })
-    
-
   }
 
 }

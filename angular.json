@@ -27,7 +27,7 @@
               "@firebase/remote-config",
               "@firebase/component",
               "@angular/fire/firestore"
-           ],
+            ],
             "outputPath": "dist/today-i-learned",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -132,8 +132,13 @@
               "devServerTarget": "today-i-learned:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "today-i-learned"
 }

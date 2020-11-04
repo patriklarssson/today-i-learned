@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "today-i-learned-1b3f3": {
+      "hosting": {
+        "today-i-learned": [
+          "today-i-learned-1b3f3"
+        ]
+      }
+    }
+  }
+}

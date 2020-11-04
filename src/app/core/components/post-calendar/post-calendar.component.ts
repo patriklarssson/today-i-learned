@@ -34,14 +34,12 @@ export class PostCalendarComponent implements OnInit {
   previous(): void {
     this.currentYear = (this.currentMonth === 0) ? this.currentYear - 1 : this.currentYear;
     this.currentMonth = (this.currentMonth === 0) ? 11 : this.currentMonth - 1;
-    this.currentDaysInMonth = this.daysInMonth()
-    console.log("Year: " + this.currentYear + " Month: " + this.months[this.currentMonth]);
-    console.log(this.currentDaysInMonth);    
+    this.currentDaysInMonth = this.daysInMonth()  
   }
 
   isHighlighted(day): boolean {
     let date = new Date(this.months[this.currentMonth] + " " + day + " " + this.currentYear).toDateString()      
-    return (this.postsList.some(x => x.date == date))
+    return (this.postsList.some(x => new Date(x.date.toDate()).toDateString() == date))
   }
 
   daysInMonth(): number {
