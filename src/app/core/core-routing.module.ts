@@ -6,6 +6,7 @@ import { PostComponent } from './views/post/post.component';
 import { NewPostComponent } from './views/new-post/new-post.component';
 import { EditPostComponent } from './views/edit-post/edit-post.component';
 import { LoginComponent } from './views/auth/login/login.component';
+import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'newpost', component: NewPostComponent },
   { path: 'editpost', component: EditPostComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile/edit', component: EditProfileComponent },
 ];
 
 @NgModule({

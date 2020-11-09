@@ -17,8 +17,8 @@ export class AuthService {
   ) {
     this.user = firebaseAuth.authState;
     this.user.subscribe((user => {
-      if(user)
-      this.checkIsAdmin(user.uid)
+      if (user)
+        this.checkIsAdmin(user.uid)
     }))
   }
 
@@ -30,8 +30,8 @@ export class AuthService {
     ).subscribe(x => {
       if (x.length > 0)
         this.isAdmin.next(true)
-      else 
-      this.isAdmin.next(false)
+      else
+        this.isAdmin.next(false)
     })
   }
 
@@ -40,7 +40,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then(userData => {
         userData.user.updateProfile({
-          displayName: displayName ? displayName : email[0].toUpperCase() + email.slice(1).split('@')[0].split('.')[0]         
+          displayName: displayName ? displayName : email[0].toUpperCase() + email.slice(1).split('@')[0].split('.')[0]
         })
       })
       .then(value => {
@@ -64,5 +64,19 @@ export class AuthService {
 
   logout() {
     this.firebaseAuth.signOut();
+  }
+
+  editProfilePicture(photo) {
+    this.firebaseAuth.currentUser.then(userData => {
+      userData.updateProfile({
+        photoURL: 'https://static-cdn.jtvnw.net/jtv_user_pictures/fc144fea-e5b3-4ee6-bb38-60784be23877-profile_image-300x300.png'
+      })
+    })
+      .then(value => {
+        console.log('Success!', value);
+      })
+      .catch(err => {
+        console.log('Something went wrong:', err.message);
+      });
   }
 }

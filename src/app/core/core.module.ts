@@ -26,7 +26,8 @@ import { EditPostComponent } from './views/edit-post/edit-post.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './views/auth/login/login.component';
-import { EditComponent } from './views/profile/edit/edit.component';
+import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { EditComponent } from './views/profile/edit/edit.component';
     ToolTipComponent,
     EditPostComponent,
     LoginComponent,
-    EditComponent,
+    EditProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +55,8 @@ import { EditComponent } from './views/profile/edit/edit.component';
     TagInputModule,
     BrowserAnimationsModule,
     MatIconModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule,
   ]
 })
 export class CoreModule { }
