@@ -8,17 +8,16 @@
         </div>
 
         <div class="links">
-            <a href="./">Home</a>
-            <a href="/about">About</a>
-            <a href="/newpost">New Post</a>
+            <!-- <a href="./">Home</a>
+            <a href="/login">Login</a>
+            <a href="/newpost">New Post</a> -->
         </div>
 
     </div>
     <div class="right">
         <div class="profile">
-            <a>righttht</a>
-            <a>righttht</a>
-            <a>righttht</a>
+            <a href="/login" *ngIf="!(authService.user | async)">Login</a>
+            <p *ngIf="authService && authService.user | async as user">{{user.displayName}}</p>
         </div>
     </div>
 

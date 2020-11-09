@@ -6,10 +6,15 @@
     justify-content: center;
     align-items: center;
     padding: 10px 10px 0 10px;    
-
     select {
-        width: 220px;
+        width: 260px;
         height: 38px;
     }
 }
 
+@media (max-width: 1200px) {
+    select {
+        width: 100% !important;
+        height: 39px !important;
+    }
+}

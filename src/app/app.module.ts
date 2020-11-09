@@ -9,7 +9,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './core/components/header/header.component';
-// import { QuillModule } from 'ngx-quill'
+import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { HeaderComponent } from './core/components/header/header.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule, // for firestore
     FormsModule,
-    // QuillModule.forRoot()
+    MatIconModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,15 +4,21 @@
     padding-top: 10px; 
 }
 
+@media (max-width: 1200px) {
+  .calendarContainer {
+      width: 90% !important;
+      max-width: 220px !important;
+  }
+}
+
 .next, .prev {
   &:hover {
     cursor: pointer;
   }
 }
 
-.calendarContainer {   
-    
-    width: 220px;
+.calendarContainer {       
+    width: 260px;
     border: 1px solid rgba(34, 36, 38, 0.15);
 }
 

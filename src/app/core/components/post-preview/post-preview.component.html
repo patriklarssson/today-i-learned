@@ -1,4 +1,4 @@
- <div class="postContainer" *ngFor="let post of postsList">
+<div class="postContainer" *ngFor="let post of postsList">
     <div class="topRow">
         <div class="titleContainer">
             <a [attr.href]="'/post?postid=' + post.id">
@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="optionsContainer">
-            <app-tool-tip [key]="post.id" ></app-tool-tip>
+            <app-tool-tip *ngIf="authService && authService.user | async" [post]="post"></app-tool-tip>
         </div>
     </div>
 
@@ -18,17 +18,18 @@
         <div class="tagsContainer">
             <div class="tags" *ngFor="let tag of post.tags">{{tag}}</div>
         </div>
-        <div class="languageContainer">
-            <p class="language">{{post.language}}</p>
+        <div class="rightContainer">
+            <div class="lang">
+                <p class="type">{{post.language}}</p>
+            </div>
+            <div class="date">
+                <p class="type">{{getDate(post.date)}}</p>
+            </div>
+            <div class="views">
+                <p class="viewCount">
+                    <mat-icon>remove_red_eye</mat-icon>{{post.views}}
+                </p>
+            </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-

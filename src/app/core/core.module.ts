@@ -23,6 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolTipComponent } from './components/tool-tip/tool-tip.component';
 import { EditPostComponent } from './views/edit-post/edit-post.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { LoginComponent } from './views/auth/login/login.component';
+import { EditComponent } from './views/profile/edit/edit.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,6 +39,8 @@ import { EditPostComponent } from './views/edit-post/edit-post.component';
     NewPostComponent,
     ToolTipComponent,
     EditPostComponent,
+    LoginComponent,
+    EditComponent,
   ],
   imports: [
     CommonModule,
@@ -41,11 +48,13 @@ import { EditPostComponent } from './views/edit-post/edit-post.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule, // for firestore
+    AngularFirestoreModule, 
     ReactiveFormsModule,
     QuillModule.forRoot(),
     TagInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    AngularFireAuthModule
   ]
 })
 export class CoreModule { }

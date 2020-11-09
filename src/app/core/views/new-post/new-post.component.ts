@@ -6,6 +6,7 @@ import { PostsService } from '../../services/posts/posts.service';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { TagsService } from '../../services/tags/tags.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-new-post',
@@ -17,18 +18,23 @@ export class NewPostComponent implements OnInit {
   constructor(
     private postsService: PostsService,
     private tagsService: TagsService,
-    private route: Router
+    private route: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.getTags()
+    this.authService.user.subscribe((user) => {
+      this.post.createdBy = user.displayName
+      this.post.createdByUserUID = user.uid
+    })
   }
 
   tagBadges: Tag[]
 
   newTag: Tag = { tag: "" }
 
-  post: Post = { body: "", date: firebase.firestore.FieldValue.serverTimestamp(), language: "", tags: [], title: "", views: 0 }
+  post: Post = { body: "", date: firebase.firestore.FieldValue.serverTimestamp(), language: "", tags: [], title: "", views: 0, createdBy: "", createdByUserUID: "" }
 
 
   tagsInputAdd(badge): void {
@@ -66,7 +72,7 @@ export class NewPostComponent implements OnInit {
           changes.map(c =>
             ({ id: c.payload.doc.id, ...c.payload.doc.data() })))
       ).subscribe(x => {
-        this.tagBadges = x        
+        this.tagBadges = x
       })
     }
   }
@@ -74,6 +80,7 @@ export class NewPostComponent implements OnInit {
   postPost(): void {
     this.post.date = firebase.firestore.FieldValue.serverTimestamp()
     this.post.views = 0
+
     this.postsService.createPost(this.post)
       .then(x => {
         this.route.navigate(['/post'], { queryParams: { postid: x } });

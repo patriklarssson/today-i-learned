@@ -5,5 +5,7 @@ export interface Post {
     language: string
     date: any
     views: number
+    createdBy: string
+    createdByUserUID: string
     id?: string
 }

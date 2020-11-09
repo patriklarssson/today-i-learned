@@ -19,12 +19,21 @@
     background-color: #ffffff;
 }
 
+.filterContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 10px;
+    align-items: center;
+    justify-content: center;
+}
 
-@media (min-width: 1000px) {
+
+@media (min-width: 1200px) {
     .container {
-        flex-direction: row;
+        flex-direction: row;        
     }
     .filterContainer {
-        position: fixed;
+        position: fixed;        
+        display: inline;
     }
 }
