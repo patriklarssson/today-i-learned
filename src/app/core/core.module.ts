@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './views/auth/login/login.component';
 import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
+import { ProfileComponent } from './views/profile/profile/profile.component';
 
 // import {AngularFireStorageModule} from "@angular/fire/storage";
 
@@ -43,6 +44,7 @@ import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.
     EditPostComponent,
     LoginComponent,
     EditProfileComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

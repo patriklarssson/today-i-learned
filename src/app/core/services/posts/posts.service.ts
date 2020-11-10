@@ -26,6 +26,14 @@ export class PostsService {
     )
   }
 
+  searchPosts(search: string): AngularFirestoreCollection<Post>  {   
+    return this.afs.collection(this.dbPathPost, ref => {
+      let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+      query = query.orderBy('title', 'desc').startAt(search).limit(10)
+      return query
+    })
+  }
+
   getFilteredPosts(filter: Filters): AngularFirestoreCollection<Post> {
     return this.afs.collection(this.dbPathPost, ref => {
       let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
@@ -58,7 +66,7 @@ export class PostsService {
   }
 
   incrementView(id: string) {
-    this.afs.collection(this.dbPathPost).doc(id).update({'views': firebase.firestore.FieldValue.increment(1)})
+    this.afs.collection(this.dbPathPost).doc(id).update({ 'views': firebase.firestore.FieldValue.increment(1) })
   }
 
 }

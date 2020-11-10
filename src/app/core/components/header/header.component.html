@@ -1,16 +1,61 @@
 <div class="container">
+    <div class="left">
+        <div class="logoContainer">
+            <a href="./">
+                Today I learned
+            </a>
+        </div>
+        <div class="searchContainer">
+            <div class="search">
+                <input placeholder="Search..." />
+                <div>
+                    <mat-icon>search</mat-icon>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="right">
+        <div class="auth" *ngIf="!(authService.user | async)">
+            <a href="/login" class="login">Login</a>
+        </div>
+        <div class="auth" *ngIf="!(authService.user | async)">
+            <button class="btn signUp"><a>Sign up</a></button>
+        </div>
+
+        <div class="user" *ngIf="authService && authService.user | async as user">            
+                <a href="/profile">
+                    <h4 class="displayName">Patrikblzeit420qwsqw</h4>
+                </a>
+                <a href="/profile">
+                    <img class="profilePic" src={{user.photoURL}}/>     
+                </a>                      
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
 
     <div class="left">
         <div class="pageTitle">
             <a href="./">
                 <h1>Today I learned</h1>
             </a>
-        </div>
-
-        <div class="links">
-            <!-- <a href="./">Home</a>
-            <a href="/login">Login</a>
-            <a href="/newpost">New Post</a> -->
+            <input />
         </div>
 
     </div>
@@ -18,9 +63,10 @@
         <div class="profile">
             <a href="/login" *ngIf="!(authService.user | async)">Login</a>
             <p *ngIf="authService && authService.user | async as user">{{user.displayName}}</p>
-            <img style="height: 50px; width: 50px;" *ngIf="authService && authService.user | async as user" src={{user.photoURL}} />
+            <img style="height: 50px; width: 50px;" *ngIf="authService && authService.user | async as user"
+                src={{user.photoURL}} />
         </div>
     </div>
 
 
-</div>
+</div> -->
