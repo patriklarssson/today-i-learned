@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { StorageService } from 'src/app/core/services/storage/storage.service';
 
@@ -8,32 +9,25 @@ import { StorageService } from 'src/app/core/services/storage/storage.service';
   styleUrls: ['./edit-profile.component.scss']
 })
 
-// class ImageSnippet {
-//   constructor(public src: string, public file: File) {}
-// }
-
 export class EditProfileComponent implements OnInit {
 
-  selectedFile
+  selectedFile: File
 
   constructor(
-    private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
-  }
+  }  
 
   processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.selectedFile = {src: event.target.result, file: file}      
-    })
-    reader.readAsDataURL(file);
+    this.selectedFile = imageInput.files[0]
   }
 
   save() {
-    this.storageService.uploadPhotoToStorage(this.selectedFile)
+    const blobRef = this.storageService.uploadPhotoToStorage(this.selectedFile)
+    blobRef.then(x => this.authService.editProfilePicture(x))
+    
   }
 }

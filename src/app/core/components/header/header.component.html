@@ -18,8 +18,7 @@
         <div class="profile">
             <a href="/login" *ngIf="!(authService.user | async)">Login</a>
             <p *ngIf="authService && authService.user | async as user">{{user.displayName}}</p>
-            <p *ngIf="authService && authService.user | async as user">{{user.photoURL}}</p>
-            <!-- <img *ngIf="authService && authService.user | async as user" src={{user.photoURL}} /> -->
+            <img style="height: 50px; width: 50px;" *ngIf="authService && authService.user | async as user" src={{user.photoURL}} />
         </div>
     </div>
 

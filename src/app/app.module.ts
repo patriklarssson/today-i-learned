@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './core/components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -28,8 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MatIconModule,
     BrowserAnimationsModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    { provide: BUCKET, useValue: 'today-i-learned-bcd66.appspot.com' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

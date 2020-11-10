@@ -27,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { LoginComponent } from './views/auth/login/login.component';
 import { EditProfileComponent } from './views/profile/edit-profile/edit-profile.component';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+
+// import {AngularFireStorageModule} from "@angular/fire/storage";
 
 @NgModule({
   declarations: [
@@ -49,14 +50,14 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule, 
+    AngularFirestoreModule,
     ReactiveFormsModule,
     QuillModule.forRoot(),
     TagInputModule,
     BrowserAnimationsModule,
     MatIconModule,
     AngularFireAuthModule,
-    AngularFireStorageModule,
+    // AngularFireStorageModule
   ]
 })
 export class CoreModule { }

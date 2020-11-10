@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.user.subscribe((x => {
-      console.log(x.photoURL)
+      // console.log(x.photoURL)
     }))
   }
 }
